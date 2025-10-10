@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "notes": "My awesome keymap",
+  "notes": "Awesome keymap",
   "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
   "keyboard": "splitkb/aurora/sofle_v2/rev1",
   "keymap": "splitkb_aurora_sofle_v2_rev1_splitkb_aurora_sofle_v2_rev1_splitkb_aurora_sofle_v2_rev1_splitkb_aurora_sofle_v2_rev1_splitkb_aurora_sofle_v2_rev1_linus045",
@@ -30,7 +30,7 @@
       "KC_I",
       "KC_O",
       "KC_P",
-      "KC_NO",
+      "KC_GRV",
       "KC_ESC",
       "LGUI_T(KC_A)",
       "LALT_T(KC_S)",
@@ -58,9 +58,9 @@
       "KC_SLSH",
       "KC_RSFT",
       "KC_LCTL",
-      "LT(3,KC_ESC)",
-      "LT(2,KC_TAB)",
-      "LT(1,KC_SPC)",
+      "LT(1,KC_ESC)",
+      "LT(3,KC_TAB)",
+      "LT(2,KC_SPC)",
       "LT(4,KC_ENT)",
       "KC_ENT",
       "KC_SPC",
@@ -379,5 +379,5 @@
       "KC_RCTL"
     ]
   ],
-  "author": "Anonymous"
+  "author": "Linus045"
 }
