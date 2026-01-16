@@ -27,3 +27,9 @@
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 
 #define PERMISSIVE_HOLD
+
+// how many steps to interpret as a click
+#define ENCODER_RESOLUTION 2
+
+// #define ENCODER_A_PINS {B12}
+// #define ENCODER_B_PINS {B13}
