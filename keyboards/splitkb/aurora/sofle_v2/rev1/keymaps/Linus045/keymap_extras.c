@@ -17,72 +17,6 @@ void keyboard_pre_init_user(void) {
   gpio_write_pin_high(24);
 }
 
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//   // Handle Ctrl LED state
-//   switch (keycode) {
-//   case KC_SPC:
-//     if (record->event.pressed) {
-//       gpio_write_pin_low(24);
-//     } else {
-//       gpio_write_pin_high(24);
-//     }
-//     break;
-//   }
-//   return true;
-// }
-
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//   if (layer_state_cmp(state, 2)) {
-//     gpio_write_pin_low(24);
-//   } else {
-//     gpio_write_pin_high(24);
-//   }
-//   return state;
-// }
-
-// bool oled_task_user(void) {
-//   // Host Keyboard Layer Status
-//   oled_write_P(PSTR("Layer: "), false);
-
-//   switch (get_highest_layer(layer_state)) {
-//   case 1:
-//     oled_write_P(PSTR("Default\n"), false);
-//     break;
-//   case 2:
-//     oled_write_P(PSTR("FN\n"), false);
-//     break;
-//   case 3:
-//     oled_write_P(PSTR("ADJ\n"), false);
-//     break;
-//   default:
-//     // Or use the write_ln shortcut over adding '\n' to the end of your
-//     oled_write_P(PSTR("Undefined"), false);
-//   }
-
-//   // // Host Keyboard LED Status
-//   // led_t led_state = host_keyboard_led_state();
-//   // oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
-//   // oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-//   // oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "),
-//   false);
-
-//   return false;
-// }
-
-/**
- * Put this somewhere at the beginning of the file --
- * Make sure you import only one of animations at a time
- * They all have same function exported, so it won't compile if you
- * include more than one at a time. You can also configure some options
- * before including the animation. Not all animations support them, but some do
- * :P.
- */
-#define ANIM_INVERT true
-#define ANIM_RENDER_WPM true
-#define FAST_TYPE_WPM 45 // Switch to fast animation when over words per minute
-
-#include "bars_animation.c"
-
 #define FRAME_DURATION 100
 
 uint32_t current_frame_idx = 0;
@@ -318,8 +252,9 @@ void oled_render_logo(void) {
 }
 
 bool oled_task_user(void) {
-  if (!is_keyboard_master()) {
-    oled_render_anim();
+  if (is_keyboard_master()) {
+    // oled_render_anim(scroll_offsetx, scroll_offsety);
+    oled_render_logo();
   } else {
     oled_render_logo();
     // oled_render_anim();
@@ -333,7 +268,8 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (is_keyboard_master()) {
     return rotation;
   }
-  return OLED_ROTATION_180;
+  // return OLED_ROTATION_180;
+  return rotation;
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
